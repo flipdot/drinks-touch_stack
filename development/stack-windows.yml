@@ -1,0 +1,90 @@
+version: "3.7"
+services:
+  adminer:
+    deploy:
+      labels:
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:adminer.${STACK_DOMAIN}
+      - traefik.port=8080
+      - traefik.frontend.auth.basic=${STACK_AUTH_BASIC}
+    image: "adminer:4"
+  drinks-touch:
+    deploy:
+      labels:
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:${STACK_DOMAIN},www.${STACK_DOMAIN}
+      - traefik.port=80
+    environment:
+      DISPLAY: "${DISPLAY}"
+    image: "flipdot/drinks-touch:0.0.0"
+    volumes:
+    - "../production/secrets/drinks-touch_config.py:/app/config.py"
+    - "../production/secrets/acme_config.py:/app/acme/config.py"
+
+  # ldap:
+  #   image: "osixia/openldap"
+  #   environment:
+  #     LDAP_DOMAIN: "flipdot.org"
+  #     LDAP_LOGIN_DN: "dc=flipdot,dc=org"
+  #     LDAP_ADMIN_PASSWORD: "admin"
+  #   ports:
+  #   - "389:389"
+  #   - "639:639"
+  phpldapadmin:
+    deploy:
+      labels:
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:phpldapadmin.${STACK_DOMAIN}
+      - traefik.port=6443
+      - traefik.frontend.auth.basic=${STACK_AUTH_BASIC}
+    environment:
+      PHPLDAPADMIN_HTTPS: "true"
+    image: "osixia/phpldapadmin:0.7.2"
+    volumes:
+    - "phpldapadmin-data:/var/www/phpldapadmin"
+  # postgres:
+  #   image: "postgres"
+  #   environment:
+  #     POSTGRES_DB: "drinks"
+  #     POSTGRES_PASSWORD: "postgres"
+  #   volumes:
+  #   - "postgres-data:/var/lib/postgresql/data"
+  #   - "./sql/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql"
+  #   - "./sql/02-drinks.sql:/docker-entrypoint-initdb.d/02-drinks.sql"
+  traefik:
+    command:
+    - --api
+    - --defaultentrypoints=http,https
+    - --docker
+    - --docker.exposedByDefault=false
+    - --docker.swarmMode=true
+    - --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
+    - --entryPoints=Name:https Address::443 TLS:/etc/traefik/acme/drinks-touch.crt,/etc/traefik/acme/drinks-touch.key
+      Compress:true
+    - --insecureSkipVerify=true
+    deploy:
+      labels:
+      - traefik.enable=true
+      - traefik.frontend.auth.basic=${STACK_AUTH_BASIC}
+      - traefik.frontend.rule=Host:traefik.${STACK_DOMAIN}
+      - traefik.port=8080
+      mode: global
+      placement:
+        constraints:
+        - node.role == manager
+    image: traefik:1.7-alpine
+    ports:
+    - mode: host
+      protocol: tcp
+      published: 80
+      target: 80
+    - mode: host
+      protocol: tcp
+      published: 443
+      target: 443
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - ./certificates/:/etc/traefik/acme/
+volumes:
+  phpldapadmin-data: {}
+  # postgres-data: {}
