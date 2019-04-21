@@ -16,7 +16,7 @@ services:
       - traefik.port=80
     environment:
       DISPLAY: "${DISPLAY}"
-    image: "flipdot/drinks-touch:0.0.0"
+    image: "flipdot/drinks-touch:dev"
     volumes:
     - "../production/secrets/drinks-touch_config.py:/app/config.py"
     - "../production/secrets/acme_config.py:/app/acme/config.py"
