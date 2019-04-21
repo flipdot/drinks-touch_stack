@@ -20,16 +20,15 @@ services:
     volumes:
     - "../production/secrets/drinks-touch_config.py:/app/config.py"
     - "../production/secrets/acme_config.py:/app/acme/config.py"
-
-  # ldap:
-  #   image: "osixia/openldap"
-  #   environment:
-  #     LDAP_DOMAIN: "flipdot.org"
-  #     LDAP_LOGIN_DN: "dc=flipdot,dc=org"
-  #     LDAP_ADMIN_PASSWORD: "admin"
-  #   ports:
-  #   - "389:389"
-  #   - "639:639"
+  ldap:
+    image: "osixia/openldap"
+    environment:
+      LDAP_DOMAIN: "flipdot.org"
+      LDAP_LOGIN_DN: "dc=flipdot,dc=org"
+      LDAP_ADMIN_PASSWORD: "admin"
+    ports:
+    - "389:389"
+    - "639:639"
   phpldapadmin:
     deploy:
       labels:
@@ -42,15 +41,15 @@ services:
     image: "osixia/phpldapadmin:0.7.2"
     volumes:
     - "phpldapadmin-data:/var/www/phpldapadmin"
-  # postgres:
-  #   image: "postgres"
-  #   environment:
-  #     POSTGRES_DB: "drinks"
-  #     POSTGRES_PASSWORD: "postgres"
-  #   volumes:
-  #   - "postgres-data:/var/lib/postgresql/data"
-  #   - "./sql/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql"
-  #   - "./sql/02-drinks.sql:/docker-entrypoint-initdb.d/02-drinks.sql"
+  postgres:
+    image: "postgres"
+    environment:
+      POSTGRES_DB: "drinks"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+    - "postgres-data:/var/lib/postgresql/data"
+    - "../production/data/postgres/sql/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql"
+    - "../production/data/postgres/sql/02-drinks.sql:/docker-entrypoint-initdb.d/02-drinks.sql"
   traefik:
     command:
     - --api
@@ -87,4 +86,4 @@ services:
     - ./certificates/:/etc/traefik/acme/
 volumes:
   phpldapadmin-data: {}
-  # postgres-data: {}
+  postgres-data: {}
