@@ -1,0 +1,7 @@
+services:
+  drinks-touch:
+    image: flipdot/drinks-touch:0.0.0
+  ldap: (( prune ))
+  postgres: (( prune ))
+volumes:
+  postgres-data: (( prune ))
