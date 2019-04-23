@@ -6,7 +6,6 @@ services:
       - traefik.enable=true
       - traefik.frontend.rule=Host:adminer.${STACK_DOMAIN}
       - traefik.port=8080
-      - traefik.frontend.auth.basic=${STACK_AUTH_BASIC}
     image: "adminer:4"
   drinks-touch:
     deploy:
@@ -36,7 +35,6 @@ services:
       - traefik.enable=true
       - traefik.frontend.rule=Host:phpldapadmin.${STACK_DOMAIN}
       - traefik.port=6443
-      - traefik.frontend.auth.basic=${STACK_AUTH_BASIC}
     environment:
       PHPLDAPADMIN_HTTPS: "true"
     image: "osixia/phpldapadmin:0.7.2"
@@ -65,7 +63,6 @@ services:
     deploy:
       labels:
       - traefik.enable=true
-      - traefik.frontend.auth.basic=${STACK_AUTH_BASIC}
       - traefik.frontend.rule=Host:traefik.${STACK_DOMAIN}
       - traefik.port=8080
       mode: global
