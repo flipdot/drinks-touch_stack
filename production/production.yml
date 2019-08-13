@@ -1,6 +1,6 @@
 services:
   drinks-touch:
-    image: flipdot/drinks-touch:0.1.0
+    image: flipdot/drinks-touch:0.1.1
   ldap: (( prune ))
   phpldapadmin: (( prune ))
   postgres: (( prune ))
