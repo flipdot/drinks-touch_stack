@@ -4,5 +4,11 @@ services:
   ldap: (( prune ))
   phpldapadmin: (( prune ))
   postgres: (( prune ))
+  traefik:
+    volumes:
+    - (( replace ))
+    - /var/run/docker.sock:/var/run/docker.sock
+    - acme_data:/etc/traefik/acme/
 volumes:
+  acme_data: {}
   postgres-data: (( prune ))
