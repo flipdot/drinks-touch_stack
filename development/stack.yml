@@ -57,7 +57,7 @@ services:
     - --docker.exposedByDefault=false
     - --docker.swarmMode=true
     - --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
-    - --entryPoints=Name:https Address::443 TLS:/etc/traefik/acme/drinks-touch.crt,/etc/traefik/acme/drinks-touch.key
+    - --entryPoints=Name:https Address::443 TLS:/etc/traefik/acme/drinks-touch.flipdot.crt,/etc/traefik/acme/drinks-touch.flipdot.key
       Compress:true
     - --insecureSkipVerify=true
     deploy:
