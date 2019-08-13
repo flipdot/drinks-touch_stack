@@ -39,6 +39,10 @@ This project is deployed in accordance to the [DargStack template](https://githu
   | login dn | cn=admin,dc=flipdot,dc=org |
   | password | admin                      |
 
+- ### `reset-touch` ![production](https://img.shields.io/badge/-production-informational.svg?style=flat-square)
+
+  Service script that resets the eGalax touchscreen offset.
+
 - ### `traefik`
 
   You can access the reverse proxy's dashboard at [traefik.drinks-touch.test](https://traefik.drinks-touch.test/).

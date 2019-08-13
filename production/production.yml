@@ -4,6 +4,12 @@ services:
   ldap: (( prune ))
   phpldapadmin: (( prune ))
   postgres: (( prune ))
+  reset-touch:
+    environment:
+      DISPLAY: "unix${DISPLAY}"
+    image: "flipdot/reset-touch:0.0.0"
+    volumes:
+    - "/tmp/.X11-unix:/tmp/.X11-unix"
   traefik:
     command:
     - (( prepend ))
