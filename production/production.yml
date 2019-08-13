@@ -17,6 +17,22 @@ services:
     - (( replace ))
     - /var/run/docker.sock:/var/run/docker.sock
     - acme_data:/etc/traefik/acme/
+  traefik_certs-dumper:
+    image: ldez/traefik-certs-dumper:v2.4.0
+    command:
+    - file
+    - --clean=false
+    - --crt-name="$STACK_DOMAIN"
+    - --dest=/etc/traefik/acme/
+    - --key-name="$STACK_DOMAIN"
+    - --post-hook="/mnt/traefik_certs-dumper/post-hook $STACK_DOMAIN"
+    - --source=/etc/traefik/acme/acme.json
+    - --watch
+    environment:
+      STACK_DOMAIN: ${STACK_DOMAIN}
+    volumes:
+    - acme_data:/etc/traefik/acme/
+    - ./configurations/traefik_certs-dumper/post-hook:/mnt/traefik_certs-dumper/post-hook
 volumes:
   acme_data: {}
   postgres-data: (( prune ))

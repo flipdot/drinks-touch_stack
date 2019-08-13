@@ -44,6 +44,10 @@ This project is deployed in accordance to the [DargStack template](https://githu
   You can access the reverse proxy's dashboard at [traefik.drinks-touch.test](https://traefik.drinks-touch.test/).
   Traefik enables HTTPS for all services and acts as a load-balancer too.
 
+- ### `traefik_certs-dumper` ![production](https://img.shields.io/badge/-production-informational.svg?style=flat-square)
+
+  See [DargStack template: certificates](https://github.com/Dargmuesli/dargstack-template/#certificates).
+
 ## Volumes
 - ### `phpldapadmin-data`
   The ldap frontend's data.
