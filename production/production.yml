@@ -7,7 +7,7 @@ services:
   reset-touch:
     environment:
       DISPLAY: "unix${DISPLAY}"
-    image: "flipdot/reset-touch:0.0.0"
+    image: "flipdot/reset-touch:0.0.1"
     volumes:
     - "/tmp/.X11-unix:/tmp/.X11-unix"
   traefik:
