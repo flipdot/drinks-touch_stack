@@ -4,14 +4,14 @@ services:
     deploy:
       labels:
       - traefik.enable=true
-      - traefik.frontend.rule=Host:adminer.${STACK_DOMAIN}
+      - traefik.frontend.rule=Host:adminer.${STACK_DOMAIN},adminer.${STACK_DOMAIN_LOCAL}
       - traefik.port=8080
     image: "adminer:4"
   drinks-touch:
     deploy:
       labels:
       - traefik.enable=true
-      - traefik.frontend.rule=Host:${STACK_DOMAIN},www.${STACK_DOMAIN}
+      - traefik.frontend.rule=Host:${STACK_DOMAIN},${STACK_DOMAIN_LOCAL},www.${STACK_DOMAIN},www.${STACK_DOMAIN_LOCAL}
       - traefik.port=80
     environment:
       DISPLAY: "unix${DISPLAY}"
@@ -33,7 +33,7 @@ services:
     deploy:
       labels:
       - traefik.enable=true
-      - traefik.frontend.rule=Host:phpldapadmin.${STACK_DOMAIN}
+      - traefik.frontend.rule=Host:phpldapadmin.${STACK_DOMAIN},phpldapadmin.${STACK_DOMAIN_LOCAL}
       - traefik.port=6443
     environment:
       PHPLDAPADMIN_HTTPS: "true"
@@ -63,7 +63,7 @@ services:
     deploy:
       labels:
       - traefik.enable=true
-      - traefik.frontend.rule=Host:traefik.${STACK_DOMAIN}
+      - traefik.frontend.rule=Host:traefik.${STACK_DOMAIN},traefik.${STACK_DOMAIN_LOCAL}
       - traefik.port=8080
       mode: global
       placement:

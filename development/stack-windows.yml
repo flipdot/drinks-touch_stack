@@ -4,7 +4,7 @@ services:
     deploy:
       labels:
       - traefik.enable=true
-      - traefik.frontend.rule=Host:adminer.${STACK_DOMAIN}
+      - traefik.frontend.rule=Host:adminer.${STACK_DOMAIN},adminer.${STACK_DOMAIN_LOCAL}
       - traefik.port=8080
       - traefik.frontend.auth.basic=${STACK_AUTH_BASIC}
     image: "adminer:4"
@@ -12,7 +12,7 @@ services:
     deploy:
       labels:
       - traefik.enable=true
-      - traefik.frontend.rule=Host:${STACK_DOMAIN},www.${STACK_DOMAIN}
+      - traefik.frontend.rule=Host:${STACK_DOMAIN},${STACK_DOMAIN_LOCAL},www.${STACK_DOMAIN},www.${STACK_DOMAIN_LOCAL}
       - traefik.port=80
     environment:
       DISPLAY: "${DISPLAY}"
@@ -33,7 +33,7 @@ services:
     deploy:
       labels:
       - traefik.enable=true
-      - traefik.frontend.rule=Host:phpldapadmin.${STACK_DOMAIN}
+      - traefik.frontend.rule=Host:phpldapadmin.${STACK_DOMAIN},phpldapadmin.${STACK_DOMAIN_LOCAL}
       - traefik.port=6443
       - traefik.frontend.auth.basic=${STACK_AUTH_BASIC}
     environment:
@@ -65,7 +65,7 @@ services:
       labels:
       - traefik.enable=true
       - traefik.frontend.auth.basic=${STACK_AUTH_BASIC}
-      - traefik.frontend.rule=Host:traefik.${STACK_DOMAIN}
+      - traefik.frontend.rule=Host:traefik.${STACK_DOMAIN},traefik.${STACK_DOMAIN_LOCAL}
       - traefik.port=8080
       mode: global
       placement:
