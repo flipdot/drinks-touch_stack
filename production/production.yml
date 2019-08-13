@@ -5,6 +5,14 @@ services:
   phpldapadmin: (( prune ))
   postgres: (( prune ))
   traefik:
+    command:
+    - (( prepend ))
+    - --acme.acmeLogging=true
+    - --acme.httpChallenge.entrypoint=http
+    - --acme.domains=${STACK_DOMAIN}
+    - --acme.email=${STACK_ACME_EMAIL}
+    - --acme.entrypoint=https
+    - --acme.storage=/etc/traefik/acme/acme.json
     volumes:
     - (( replace ))
     - /var/run/docker.sock:/var/run/docker.sock
