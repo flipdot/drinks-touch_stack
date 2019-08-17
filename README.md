@@ -115,3 +115,24 @@ For usage with Docker you need a running X server. See below for details.
   docker run --name dsd_phpldapadmin -d -p 6443:443 -v dsd_phpldapadmin-data:/var/www/phpldapadmin --link dsd_ldap:ldap -e PHPLDAPADMIN_LDAP_HOSTS=ldap osixia/phpldapadmin
   ```
 </details>
+
+---
+
+In case you receive an error like the following
+
+```
+X Error of failed request:  BadValue (integer parameter out of range for operation),
+  Major opcode of failed request:  130 (MIT-SHM),
+  Minor opcode of failed request:  3 (X_ShmPutImage),
+  Value in failed request:  0x1e0,
+  Serial number of failed request:  13,
+  Current serial number in output stream:  14,
+```
+
+create a `/etc/X11/xorg.conf.d/disable-MIT-SHM.conf` file with the following content
+
+```
+Section "Extensions"
+    Option "MIT-SHM" "Disable"
+EndSection
+```
