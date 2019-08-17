@@ -7,7 +7,7 @@ This project is deployed in accordance to the [DargStack template](https://githu
 ## Table of Contents
 1. **[Services](#services)**
 1. **[Volumes](#volumes)**
-1. **[Notes](#volumes)**
+1. **[Notes](#notes)**
 
 ## Services
 - ### `adminer`
