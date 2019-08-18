@@ -1,5 +1,7 @@
 services:
   drinks-touch:
+    environment:
+      ENV: "PI"
     image: flipdot/drinks-touch:0.1.2
   ldap: (( prune ))
   phpldapadmin: (( prune ))
