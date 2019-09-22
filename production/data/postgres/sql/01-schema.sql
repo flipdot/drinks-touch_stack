@@ -8,17 +8,18 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -29,7 +30,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: drink; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: drink; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE public.drink (
@@ -66,7 +67,7 @@ ALTER SEQUENCE public.drink_id_seq OWNED BY public.drink.id;
 
 
 --
--- Name: ldapUsers; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: ldapUsers; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE public."ldapUsers" (
@@ -103,7 +104,7 @@ ALTER SEQUENCE public."ldapUsers_id_seq" OWNED BY public."ldapUsers".id;
 
 
 --
--- Name: rechargeevent; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: rechargeevent; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE public.rechargeevent (
@@ -139,7 +140,7 @@ ALTER SEQUENCE public.rechargeevent_id_seq OWNED BY public.rechargeevent.id;
 
 
 --
--- Name: scanevent; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: scanevent; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE public.scanevent (
@@ -203,7 +204,7 @@ ALTER TABLE ONLY public.scanevent ALTER COLUMN id SET DEFAULT nextval('public.sc
 
 
 --
--- Name: ldapUsers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: ldapUsers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY public."ldapUsers"
@@ -211,7 +212,7 @@ ALTER TABLE ONLY public."ldapUsers"
 
 
 --
--- Name: rechargeevent_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: rechargeevent_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY public.rechargeevent
@@ -219,7 +220,7 @@ ALTER TABLE ONLY public.rechargeevent
 
 
 --
--- Name: scanevent_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: scanevent_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY public.scanevent

@@ -8,6 +8,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 
 SET default_tablespace = '';
@@ -15,7 +16,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: drink; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: drink; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE public.drink (
@@ -74,6 +75,11 @@ COPY public.drink (id, ean, name, size, "timestamp", type) FROM stdin;
 39	4104640020124	Apfelschorle	0.75	2018-06-05 17:41:28.21306	saft
 15	4008948194016	Jever Fun Alkoholfrei	0.5	2016-12-07 00:06:25.114132	saft
 40	619659137915	Zehntel SD-Karte	0.1	\N	hardware
+41	3155930001324	Desperados	0.33	\N	bier
+42	4014472002529	Bionade Ingwer-Orange	0.33	\N	saft
+43	28415305	Caffè Latte Espresso	0.25	\N	coffee
+44	4008287910582	Krombacher Radler Naturtrüb	0.5	\N	bier
+46	4003892012317	Krombacher Radler Naturtrüb	0.33	\N	bier
 2	4029764001807	Club-Mate	0.5	2016-08-28 20:24:59.423597	mate
 3	41001318	BECKS	0.5	2016-08-28 20:25:00.24342	bier
 4	4069800005871	Nörten-Hardenberger	0.33	2016-08-28 20:25:01.098931	bier
@@ -106,7 +112,7 @@ COPY public.drink (id, ean, name, size, "timestamp", type) FROM stdin;
 -- Name: drink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.drink_id_seq', 40, true);
+SELECT pg_catalog.setval('public.drink_id_seq', 46, true);
 
 
 --
