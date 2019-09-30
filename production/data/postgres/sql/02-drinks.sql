@@ -16,7 +16,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: drink; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- Name: drink; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE public.drink (
@@ -81,6 +81,7 @@ COPY public.drink (id, ean, name, size, "timestamp", type) FROM stdin;
 44	4008287910582	Krombacher Radler Naturtrüb	0.5	\N	bier
 46	4003892012317	Krombacher Radler Naturtrüb	0.33	\N	bier
 48	8697412871551	Tuzlu Ay Çekirdeği	200	\N	snack
+49	4002846034757	Mio Mio Guarana	0.5	\N	mate
 2	4029764001807	Club-Mate	0.5	2016-08-28 20:24:59.423597	mate
 3	41001318	BECKS	0.5	2016-08-28 20:25:00.24342	bier
 4	4069800005871	Nörten-Hardenberger	0.33	2016-08-28 20:25:01.098931	bier
@@ -113,7 +114,7 @@ COPY public.drink (id, ean, name, size, "timestamp", type) FROM stdin;
 -- Name: drink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.drink_id_seq', 48, true);
+SELECT pg_catalog.setval('public.drink_id_seq', 49, true);
 
 
 --
