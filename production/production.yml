@@ -33,7 +33,7 @@ services:
     - --crt-name="$STACK_DOMAIN"
     - --dest=/etc/traefik/acme/
     - --key-name="$STACK_DOMAIN"
-    - --post-hook="/mnt/traefik_certs-dumper/post-hook $STACK_DOMAIN"
+    - --post-hook=/mnt/traefik_certs-dumper/post-hook $STACK_DOMAIN
     - --source=/etc/traefik/acme/acme.json
     - --watch
     environment:
