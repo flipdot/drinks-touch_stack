@@ -17,8 +17,7 @@ services:
       DISPLAY: "unix${DISPLAY}"
     image: "flipdot/drinks-touch:dev"
     volumes:
-    - "../production/secrets/drinks-touch_config.py:/app/config.py"
-    - "../production/secrets/acme_config.py:/app/acme/config.py"
+    - "../../drinks-touch/drinks_touch/:/app/"
     - "/tmp/.X11-unix:/tmp/.X11-unix"
   ldap:
     image: "osixia/openldap"
