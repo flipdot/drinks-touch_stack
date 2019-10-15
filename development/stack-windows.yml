@@ -18,8 +18,8 @@ services:
       DISPLAY: "${DISPLAY}"
     image: "flipdot/drinks-touch:dev"
     volumes:
-    - "../production/secrets/drinks-touch_config.py:/app/config.py"
-    - "../production/secrets/acme_config.py:/app/acme/config.py"
+    - "../production/secrets/drinks-touch/drinks-touch_config.py:/app/config.py"
+    - "../production/secrets/drinks-touch/acme_config.py:/app/acme/config.py"
   ldap:
     image: "osixia/openldap"
     environment:
