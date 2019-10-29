@@ -19,15 +19,15 @@ services:
     volumes:
     - "../../drinks-touch/drinks_touch/:/app/"
     - "/tmp/.X11-unix:/tmp/.X11-unix"
-  # ldap:
-  #   image: "osixia/openldap"
-  #   environment:
-  #     LDAP_DOMAIN: "flipdot.org"
-  #     LDAP_LOGIN_DN: "dc=flipdot,dc=org"
-  #     LDAP_ADMIN_PASSWORD: "admin"
-  #   ports:
-  #   - "389:389"
-  #   - "639:639"
+  ldap:
+    image: "osixia/openldap"
+    environment:
+      LDAP_DOMAIN: "flipdot.org"
+      LDAP_LOGIN_DN: "dc=flipdot,dc=org"
+      LDAP_ADMIN_PASSWORD: "admin"
+    ports:
+    - "389:389"
+    - "639:639"
   phpldapadmin:
     deploy:
       labels:
@@ -46,8 +46,8 @@ services:
       POSTGRES_PASSWORD: "postgres"
     volumes:
     - "postgres-data:/var/lib/postgresql/data"
-    - "../production/data/postgres/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql"
-    - "../production/data/postgres/02-drinks.sql:/docker-entrypoint-initdb.d/02-drinks.sql"
+    - "../production/data/postgres/sql/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql"
+    - "../production/data/postgres/sql/02-drinks.sql:/docker-entrypoint-initdb.d/02-drinks.sql"
   traefik:
     command:
     - --api
