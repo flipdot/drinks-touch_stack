@@ -16,10 +16,10 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: drink; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: drink; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
-CREATE TABLE public.drink (
+CREATE TABLE IF NOT EXISTS public.drink (
     id integer NOT NULL,
     ean character varying(20),
     name character varying(40),
@@ -35,7 +35,7 @@ ALTER TABLE public.drink OWNER TO postgres;
 -- Name: drink_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.drink_id_seq
+CREATE SEQUENCE IF NOT EXISTS public.drink_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
