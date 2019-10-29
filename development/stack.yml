@@ -46,8 +46,8 @@ services:
       POSTGRES_PASSWORD: "postgres"
     volumes:
     - "postgres-data:/var/lib/postgresql/data"
-    - "../production/data/postgres/sql/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql"
-    - "../production/data/postgres/sql/02-drinks.sql:/docker-entrypoint-initdb.d/02-drinks.sql"
+    - "../production/data/postgres/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql"
+    - "../production/data/postgres/02-drinks.sql:/docker-entrypoint-initdb.d/02-drinks.sql"
   traefik:
     command:
     - --api
