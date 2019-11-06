@@ -38,7 +38,7 @@ services:
       - traefik.frontend.auth.basic=${STACK_AUTH_BASIC}
     environment:
       PHPLDAPADMIN_HTTPS: "true"
-    image: "osixia/phpldapadmin:0.7.2"
+    image: "osixia/phpldapadmin:0.9.0"
     volumes:
     - "phpldapadmin-data:/var/www/phpldapadmin"
   postgres:
