@@ -22,7 +22,7 @@ services:
     - --acme.entrypoint=https
     - --acme.storage=/etc/traefik/acme/acme.json
   traefik_certs-dumper:
-    image: ldez/traefik-certs-dumper:v2.4.0
+    image: ldez/traefik-certs-dumper:v2.6.0
     command:
     - file
     - --clean=false
