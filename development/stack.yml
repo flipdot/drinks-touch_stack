@@ -6,7 +6,7 @@ services:
       - traefik.enable=true
       - traefik.frontend.rule=Host:adminer.${STACK_DOMAIN},adminer.${STACK_DOMAIN_LOCAL}
       - traefik.port=8080
-    image: "adminer:4"
+    image: "adminer:4@sha256:4ca2a6eb39e94af14d317232e86855c8fc442c3d5332fab9ce70d0bc3b112d65"
   drinks-touch:
     deploy:
       labels:
@@ -20,7 +20,7 @@ services:
     - "../../drinks-touch/drinks_touch/:/app/"
     - "/tmp/.X11-unix:/tmp/.X11-unix"
   ldap:
-    image: "osixia/openldap"
+    image: "osixia/openldap@sha256:eaefde9d33b03fe04d081767fda7d3c3500ec861108bbdd19c1b5ceb76e3ee27"
     environment:
       LDAP_DOMAIN: "flipdot.org"
       LDAP_LOGIN_DN: "dc=flipdot,dc=org"
@@ -36,11 +36,11 @@ services:
       - traefik.port=6443
     environment:
       PHPLDAPADMIN_HTTPS: "true"
-    image: "osixia/phpldapadmin:0.9.0"
+    image: "osixia/phpldapadmin:0.9.0@sha256:0b1e0ac15fff82dc5fdf12be6de06f91dc97f5fc95df5a29422a4b168dd818a6"
     volumes:
     - "phpldapadmin-data:/var/www/phpldapadmin"
   postgres:
-    image: "postgres:12.0-alpine"
+    image: "postgres:12.0-alpine@sha256:55ce4ed5ea366bfe9bd141b85608eb62a9f26f524ce0d095fb4c0a3ee50228cd"
     environment:
       POSTGRES_DB: "drinks"
       POSTGRES_PASSWORD: "postgres"
@@ -68,7 +68,7 @@ services:
       placement:
         constraints:
         - node.role == manager
-    image: traefik:1.7-alpine
+    image: traefik:1.7-alpine@sha256:b21fa147641d99b470d70a4197bc4f6ca460d52a48eca2e9d4fa8df548db60d5
     ports:
     - mode: host
       protocol: tcp
