@@ -71,7 +71,7 @@ services:
       placement:
         constraints:
         - node.role == manager
-    image: traefik:1.7-alpine@sha256:b21fa147641d99b470d70a4197bc4f6ca460d52a48eca2e9d4fa8df548db60d5
+    image: traefik:2.0-alpine@sha256:163059236ff2710378a9527865aefcfcde6cfdd811d749c3b73ff45cf27589a8
     ports:
     - mode: host
       protocol: tcp
