@@ -2,14 +2,14 @@ services:
   drinks-touch:
     environment:
       ENV: "PI"
-    image: flipdot/drinks-touch:0.1.2
+    image: flipdot/drinks-touch:0.1.2@sha256:12c3b9e99095433b5d63d227b182adc8a4d1adc61cfbf11ef85d3383bc0eb1b1
   ldap: (( prune ))
   phpldapadmin: (( prune ))
   postgres: (( prune ))
   reset-touch:
     environment:
       DISPLAY: "unix${DISPLAY}"
-    image: "flipdot/reset-touch:0.0.1"
+    image: "flipdot/reset-touch:0.0.1@sha256:165529304d24c14b8aa5e4e12430f7750704828e09c1a1aecbfa4096d4843be7"
     volumes:
     - "/tmp/.X11-unix:/tmp/.X11-unix"
   traefik:
@@ -22,7 +22,7 @@ services:
     - --acme.entrypoint=https
     - --acme.storage=/etc/traefik/acme/acme.json
   traefik_certs-dumper:
-    image: ldez/traefik-certs-dumper:v2.6.0
+    image: ldez/traefik-certs-dumper:v2.6.0@sha256:f786bbf5b21fcd68f4103c9807657a44fc74aeec16fc4702e4c947fb1050fa7d
     command:
     - file
     - --clean=false
