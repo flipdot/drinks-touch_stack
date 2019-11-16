@@ -1,5 +1,14 @@
 services:
+  adminer:
+    deploy:
+      labels:
+      - (( append ))
+      - traefik.http.routers.adminer_secure.tls.certresolver=default
   drinks-touch:
+    deploy:
+      labels:
+      - (( append ))
+      - traefik.http.routers.drinks-touch_secure.tls.certresolver=default
     environment:
       ENV: "PI"
     image: flipdot/drinks-touch:0.1.2@sha256:12c3b9e99095433b5d63d227b182adc8a4d1adc61cfbf11ef85d3383bc0eb1b1
@@ -15,12 +24,23 @@ services:
   traefik:
     command:
     - (( prepend ))
-    - --acme.acmeLogging=true
-    - --acme.httpChallenge.entrypoint=http
-    - --acme.domains=${STACK_DOMAIN}
-    - --acme.email=${STACK_ACME_EMAIL}
-    - --acme.entrypoint=https
-    - --acme.storage=/etc/traefik/acme/acme.json
+    - --certificatesResolvers.default.acme.email=${STACK_ACME_EMAIL}
+    - --certificatesResolvers.default.acme.storage=/etc/traefik/acme/acme.json
+    - --certificatesResolvers.default.acme.dnsChallenge.provider=${STACK_ACME_PROVIDER}
+    deploy:
+      labels:
+      - (( append ))
+      - traefik.http.middlewares.auth.basicauth.users=${STACK_AUTH_BASIC}
+      - traefik.http.routers.traefik_secure.middlewares=auth
+      - traefik.http.routers.traefik_secure.tls.certresolver=default
+    environment:
+      # For other providers see:
+      # https://docs.traefik.io/configuration/acme/#provider
+      CF_DNS_API_TOKEN_FILE: /run/secrets/traefik_cf-dns-api-token
+      CF_ZONE_API_TOKEN_FILE: /run/secrets/traefik_cf-zone-api-token
+    secrets:
+    - traefik_cf-dns-api-token
+    - traefik_cf-zone-api-token
   traefik_certs-dumper:
     image: ldez/traefik-certs-dumper:v2.6.0@sha256:f786bbf5b21fcd68f4103c9807657a44fc74aeec16fc4702e4c947fb1050fa7d
     command:
@@ -29,14 +49,13 @@ services:
     - --crt-name="$STACK_DOMAIN"
     - --dest=/etc/traefik/acme/
     - --key-name="$STACK_DOMAIN"
-    - --post-hook=/mnt/traefik_certs-dumper/post-hook $STACK_DOMAIN
     - --source=/etc/traefik/acme/acme.json
+    - --version=v2
     - --watch
     environment:
       STACK_DOMAIN: ${STACK_DOMAIN}
     volumes:
     - acme_data:/etc/traefik/acme/
-    - ./configurations/traefik_certs-dumper/post-hook:/mnt/traefik_certs-dumper/post-hook
 volumes:
   acme_data: {}
   postgres-data: (( prune ))
