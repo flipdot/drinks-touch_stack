@@ -1,4 +1,3 @@
-version: "3.7"
 services:
   adminer:
     deploy:
@@ -9,7 +8,7 @@ services:
       - traefik.http.routers.adminer_secure.rule=Host(`adminer.${STACK_DOMAIN}`, `adminer.${STACK_DOMAIN_LOCAL}`)
       - traefik.http.routers.adminer_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
       - traefik.http.services.adminer.loadbalancer.server.port=8080
-    image: "adminer:4@sha256:639cedba6256367b13212a155c0f09cfdaadebebe3528eb0bb61850802f62448"
+    image: adminer:4@sha256:639cedba6256367b13212a155c0f09cfdaadebebe3528eb0bb61850802f62448
   drinks-touch:
     deploy:
       labels:
@@ -20,20 +19,20 @@ services:
       - traefik.http.routers.drinks-touch_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
       - traefik.http.services.drinks-touch.loadbalancer.server.port=80
     environment:
-      DISPLAY: "unix${DISPLAY}"
-    image: "flipdot/drinks-touch:dev"
+      DISPLAY: unix${DISPLAY}
+    image: flipdot/drinks-touch:dev
     volumes:
-    - "../../drinks-touch/drinks_touch/:/app/"
-    - "/tmp/.X11-unix:/tmp/.X11-unix"
+    - ../../drinks-touch/drinks_touch/:/app/
+    - /tmp/.X11-unix:/tmp/.X11-unix
   ldap:
-    image: "osixia/openldap@sha256:eaefde9d33b03fe04d081767fda7d3c3500ec861108bbdd19c1b5ceb76e3ee27"
     environment:
-      LDAP_DOMAIN: "flipdot.org"
-      LDAP_LOGIN_DN: "dc=flipdot,dc=org"
-      LDAP_ADMIN_PASSWORD: "admin"
+      LDAP_ADMIN_PASSWORD: admin
+      LDAP_DOMAIN: flipdot.org
+      LDAP_LOGIN_DN: dc=flipdot,dc=org
+    image: osixia/openldap@sha256:eaefde9d33b03fe04d081767fda7d3c3500ec861108bbdd19c1b5ceb76e3ee27
     ports:
-    - "389:389"
-    - "639:639"
+    - 389:389
+    - 639:639
   phpldapadmin:
     deploy:
       labels:
@@ -45,29 +44,29 @@ services:
       - traefik.http.services.phpldapadmin.loadbalancer.server.port=80
     environment:
       PHPLDAPADMIN_HTTPS: "false"
-    image: "osixia/phpldapadmin:0.9.0@sha256:0b1e0ac15fff82dc5fdf12be6de06f91dc97f5fc95df5a29422a4b168dd818a6"
+    image: osixia/phpldapadmin:0.9.0@sha256:0b1e0ac15fff82dc5fdf12be6de06f91dc97f5fc95df5a29422a4b168dd818a6
     volumes:
-    - "phpldapadmin-data:/var/www/phpldapadmin"
+    - phpldapadmin-data:/var/www/phpldapadmin
   postgres:
-    image: "postgres:12.0-alpine@sha256:55ce4ed5ea366bfe9bd141b85608eb62a9f26f524ce0d095fb4c0a3ee50228cd"
     environment:
-      POSTGRES_DB: "drinks"
-      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: drinks
+      POSTGRES_PASSWORD: postgres
+    image: postgres:12.0-alpine@sha256:55ce4ed5ea366bfe9bd141b85608eb62a9f26f524ce0d095fb4c0a3ee50228cd
     volumes:
-    - "postgres-data:/var/lib/postgresql/data"
-    - "../production/data/postgres/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql"
-    - "../production/data/postgres/02-drinks.sql:/docker-entrypoint-initdb.d/02-drinks.sql"
+    - postgres-data:/var/lib/postgresql/data
+    - ../production/data/postgres/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    - ../production/data/postgres/02-drinks.sql:/docker-entrypoint-initdb.d/02-drinks.sql
   traefik:
     command:
-      - --api=true
-      - --entryPoints.web.address=:80
-      - --entryPoints.web-secure.address=:443
-      - --providers.docker=true
-      - --providers.docker.endpoint=unix:///var/run/docker.sock
-      - --providers.docker.exposedByDefault=false
-      - --providers.docker.swarmMode=true
-      - --providers.file.filename=/dynamic.yml #DARGSTACK-REMOVE
-      - --providers.file.watch=true #DARGSTACK-REMOVE
+    - --api=true
+    - --entryPoints.web.address=:80
+    - --entryPoints.web-secure.address=:443
+    - --providers.docker=true
+    - --providers.docker.endpoint=unix:///var/run/docker.sock
+    - --providers.docker.exposedByDefault=false
+    - --providers.docker.swarmMode=true
+    - --providers.file.filename=/dynamic.yml #DARGSTACK-REMOVE
+    - --providers.file.watch=true #DARGSTACK-REMOVE
     deploy:
       labels:
       - traefik.enable=true
@@ -96,6 +95,7 @@ services:
     - /var/run/docker.sock:/var/run/docker.sock
     - ./certificates/:/etc/traefik/acme/
     - ./configurations/traefik/dynamic.yml:/dynamic.yml:ro #DARGSTACK-REMOVE
+version: "3.7"
 volumes:
   phpldapadmin-data: {}
   postgres-data: {}
