@@ -28,7 +28,6 @@ services:
     environment:
       LDAP_ADMIN_PASSWORD: admin
       LDAP_DOMAIN: flipdot.org
-      LDAP_LOGIN_DN: dc=flipdot,dc=org
     image: osixia/openldap@sha256:eaefde9d33b03fe04d081767fda7d3c3500ec861108bbdd19c1b5ceb76e3ee27
     ports:
     - 389:389
@@ -43,7 +42,8 @@ services:
       - traefik.http.routers.phpldapadmin_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
       - traefik.http.services.phpldapadmin.loadbalancer.server.port=80
     environment:
-      PHPLDAPADMIN_HTTPS: "false"
+      PHPLDAPADMIN_HTTPS: 'false'
+      PHPLDAPADMIN_LDAP_HOSTS: ldap
     image: osixia/phpldapadmin:0.9.0@sha256:0b1e0ac15fff82dc5fdf12be6de06f91dc97f5fc95df5a29422a4b168dd818a6
     volumes:
     - phpldapadmin-data:/var/www/phpldapadmin
