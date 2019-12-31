@@ -43,7 +43,7 @@ services:
       - traefik.http.services.phpldapadmin.loadbalancer.server.port=80
     environment:
       PHPLDAPADMIN_HTTPS: 'false'
-      PHPLDAPADMIN_LDAP_HOSTS: ldap
+      PHPLDAPADMIN_LDAP_HOSTS: ldap #ldap.flipdot.space
     image: osixia/phpldapadmin:0.9.0@sha256:0b1e0ac15fff82dc5fdf12be6de06f91dc97f5fc95df5a29422a4b168dd818a6
     volumes:
     - phpldapadmin-data:/var/www/phpldapadmin
