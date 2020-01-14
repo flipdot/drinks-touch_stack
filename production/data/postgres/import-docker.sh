@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-cd "$parent_path"
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" || exit ; pwd -P )
+cd "$parent_path" || exit
 
-cat 01-schema.sql | docker exec -i dsd_postgres psql -U postgres -d drinks
-cat 02-drinks.sql | docker exec -i dsd_postgres psql -U postgres -d drinks
+< 01-schema.sql docker exec -i $(docker ps -f name=drinks-touch_postgres --format "{{.ID}}") psql -U postgres -d drinks
+< 02-drinks.sql docker exec -i $(docker ps -f name=drinks-touch_postgres --format "{{.ID}}") psql -U postgres -d drinks
