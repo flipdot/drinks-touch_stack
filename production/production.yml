@@ -11,7 +11,7 @@ services:
       - traefik.http.routers.drinks-touch_secure.tls.certresolver=default
     environment:
       ENV: PI
-    image: flipdot/drinks-touch:0.2.0@sha256:1ea32d4e2d3a6a713805f4f6155ed775966b2a58c39a24f6e2582c4fbde213cb
+    image: flipdot/drinks-touch:0.2.0
     volumes:
     - (( replace ))
     - /tmp/.X11-unix:/tmp/.X11-unix
@@ -20,7 +20,7 @@ services:
   reset-touch:
     environment:
       DISPLAY: unix${DISPLAY}
-    image: flipdot/reset-touch:0.0.1@sha256:165529304d24c14b8aa5e4e12430f7750704828e09c1a1aecbfa4096d4843be7
+    image: flipdot/reset-touch:0.0.1
     volumes:
     - /tmp/.X11-unix:/tmp/.X11-unix
   traefik:
@@ -47,7 +47,7 @@ services:
     - --watch
     environment:
       STACK_DOMAIN: ${STACK_DOMAIN}
-    image: ldez/traefik-certs-dumper:v2.7.0@sha256:63614a85fe984b62716c638bca1a0a837e86f7249ef3c0e7f9db8a1fed743c96
+    image: ldez/traefik-certs-dumper:v2.7.0
     volumes:
     - acme_data:/etc/traefik/acme/
 volumes:

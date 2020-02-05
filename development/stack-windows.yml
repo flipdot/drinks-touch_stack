@@ -8,7 +8,7 @@ services:
       - traefik.http.routers.adminer_secure.rule=Host(`adminer.${STACK_DOMAIN}`, `adminer.${STACK_DOMAIN_LOCAL}`)
       - traefik.http.routers.adminer_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
       - traefik.http.services.adminer.loadbalancer.server.port=8080
-    image: adminer:4@sha256:6ceb642133ac56e267c50ae4bfb24ac0008b0eb02b772abae9059caa45211bee
+    image: adminer:4
   drinks-touch:
     deploy:
       labels:
@@ -28,7 +28,7 @@ services:
       LDAP_ADMIN_PASSWORD: admin
       LDAP_DOMAIN: flipdot.org
       LDAP_LOGIN_DN: dc=flipdot,dc=org
-    image: osixia/openldap@sha256:eaefde9d33b03fe04d081767fda7d3c3500ec861108bbdd19c1b5ceb76e3ee27
+    image: osixia/openldap
     ports:
     - 389:389
     - 639:639
@@ -43,14 +43,14 @@ services:
       - traefik.http.services.phpldapadmin.loadbalancer.server.port=80
     environment:
       PHPLDAPADMIN_HTTPS: "false"
-    image: osixia/phpldapadmin:0.9.0@sha256:0b1e0ac15fff82dc5fdf12be6de06f91dc97f5fc95df5a29422a4b168dd818a6
+    image: osixia/phpldapadmin:0.9.0
     volumes:
     - phpldapadmin-data:/var/www/phpldapadmin
   postgres:
     environment:
       POSTGRES_DB: drinks
       POSTGRES_PASSWORD: postgres
-    image: postgres:12.1-alpine@sha256:6d1510dc1fb520e346b9e653c77941ab3ad8db1081b519296dcfabfcf864d393
+    image: postgres:12.1-alpine
     volumes:
     - postgres-data:/var/lib/postgresql/data
     - ../production/data/postgres/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
@@ -80,7 +80,7 @@ services:
       placement:
         constraints:
         - node.role == manager
-    image: traefik:2.1.3@sha256:fa0da7a651b89493593892f0b434abbfad6eae079c406311d22c2b8878a477f8
+    image: traefik:2.1.3
     ports:
     - mode: host
       protocol: tcp
