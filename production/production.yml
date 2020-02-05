@@ -25,19 +25,13 @@ services:
     - (( prepend ))
     - --certificatesResolvers.default.acme.email=${STACK_ACME_EMAIL}
     - --certificatesResolvers.default.acme.storage=/etc/traefik/acme/acme.json
-    - --certificatesResolvers.default.acme.dnsChallenge.provider=${STACK_ACME_PROVIDER}
+    - --certificatesResolvers.default.acme.httpChallenge.entryPoint=web
     deploy:
       labels:
       - (( append ))
       - traefik.http.middlewares.auth.basicauth.users=${STACK_AUTH_BASIC}
       - traefik.http.routers.traefik_secure.middlewares=auth
       - traefik.http.routers.traefik_secure.tls.certresolver=default
-    environment:
-      CF_DNS_API_TOKEN_FILE: /run/secrets/traefik_cf-dns-api-token
-      CF_ZONE_API_TOKEN_FILE: /run/secrets/traefik_cf-zone-api-token
-    secrets:
-    - traefik_cf-dns-api-token
-    - traefik_cf-zone-api-token
   traefik_certs-dumper:
     command:
     - file
