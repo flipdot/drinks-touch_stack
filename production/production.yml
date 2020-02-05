@@ -14,7 +14,6 @@ services:
     image: flipdot/drinks-touch:0.2.0@sha256:1ea32d4e2d3a6a713805f4f6155ed775966b2a58c39a24f6e2582c4fbde213cb
   ldap: (( prune ))
   phpldapadmin: (( prune ))
-  postgres: (( prune ))
   reset-touch:
     environment:
       DISPLAY: unix${DISPLAY}
@@ -56,4 +55,3 @@ services:
     - acme_data:/etc/traefik/acme/
 volumes:
   acme_data: {}
-  postgres-data: (( prune ))
