@@ -4,8 +4,7 @@
   "docker": {
     "major": {
       "enabled": true
-    },
-    "pinDigests": true
+    }
   },
   "docker-compose": {
     "fileMatch": ["(^|/)(stack|production)[^/]*\\.ya?ml$"]
