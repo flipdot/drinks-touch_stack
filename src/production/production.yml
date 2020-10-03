@@ -51,5 +51,6 @@ services:
     image: ldez/traefik-certs-dumper:v2.7.0
     volumes:
     - acme_data:/etc/traefik/acme/
+version: "3.7"
 volumes:
   acme_data: {}
