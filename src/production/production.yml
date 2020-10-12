@@ -19,6 +19,7 @@ services:
   ldap: (( prune ))
   phpldapadmin: (( prune ))
   reset-touch:
+  # Service script that resets the eGalax touchscreen offset.
     environment:
       DISPLAY: unix${DISPLAY}
     image: flipdot/reset-touch:0.0.1
@@ -37,6 +38,7 @@ services:
       - traefik.http.routers.traefik_secure.middlewares=auth
       - traefik.http.routers.traefik_secure.tls.certresolver=default
   traefik_certs-dumper:
+  # See [DargStack template: certificates](https://github.com/dargmuesli/dargstack_template/#certificates).
     command:
     - file
     - --clean=false
@@ -53,4 +55,6 @@ services:
     - acme_data:/etc/traefik/acme/
 version: "3.7"
 volumes:
-  acme_data: {}
+  acme_data:
+  # The reverse proxy's certificate data.
+    {}

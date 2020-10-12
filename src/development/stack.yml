@@ -1,5 +1,22 @@
+# drinks-touch.fd
+# https://drinks-touch.fd/
+# drinks-touch
+# https://github.com/flipdot/drinks-touch/
+---
 services:
   adminer:
+  # You can access the database's frontend at [adminer.drinks-touch.test](https://adminer.drinks-touch.test/).
+  # This information is required for login:
+  #
+  # |          |                     |
+  # | -------- | ------------------- |
+  # | System   | PostgreSQL          |
+  # | Server   | postgres            |
+  # | Username | [postgres_user]     |
+  # | Password | [postgres_password] |
+  # | Database | [postgres_db]       |
+  #
+  # Values in square brackets are [Docker secrets](https://docs.docker.com/engine/swarm/secrets/).
     deploy:
       labels:
       - traefik.enable=true
@@ -10,6 +27,7 @@ services:
       - traefik.http.services.adminer.loadbalancer.server.port=8080
     image: adminer:4
   drinks-touch:
+  # You can access the main project at [drinks-touch.test](http://drinks-touch.test/).
     deploy:
       labels:
       - traefik.enable=true
@@ -25,6 +43,7 @@ services:
     - ../../drinks-touch/drinks_touch/:/app/
     - /tmp/.X11-unix:/tmp/.X11-unix
   ldap:
+  # You can access the open source ldap implementation via `phpldapadmin`.
     environment:
       LDAP_ADMIN_PASSWORD: admin
       LDAP_DOMAIN: flipdot.org
@@ -33,6 +52,13 @@ services:
     - 389:389
     - 639:639
   phpldapadmin:
+  # You can access the ldap frontend at [phpldapadmin.drinks-touch.test](http://phpldapadmin.drinks-touch.test/).
+  # This information is required for login:
+  #
+  # |          |                            |
+  # | -------- | -------------------------- |
+  # | login dn | cn=admin,dc=flipdot,dc=org |
+  # | password | admin                      |
     deploy:
       labels:
       - traefik.enable=true
@@ -48,6 +74,7 @@ services:
     volumes:
     - phpldapadmin-data:/var/www/phpldapadmin
   postgres:
+  # You can access the database via `adminer`.
     environment:
       POSTGRES_DB: drinks
       POSTGRES_PASSWORD: postgres
@@ -57,6 +84,8 @@ services:
     - ../production/data/postgres/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
     - ../production/data/postgres/02-drinks.sql:/docker-entrypoint-initdb.d/02-drinks.sql
   traefik:
+  # You can access the reverse proxy's dashboard at [traefik.drinks-touch.test](https://traefik.drinks-touch.test/).
+  # Traefik enables HTTPS for all services and acts as a load-balancer too.
     command:
     - --api=true
     - --entryPoints.web.address=:80
@@ -97,5 +126,9 @@ services:
     - ./configurations/traefik/dynamic.yml:/dynamic.yml:ro #DARGSTACK-REMOVE
 version: "3.7"
 volumes:
-  phpldapadmin-data: {}
-  postgres-data: {}
+  phpldapadmin-data:
+  # The ldap frontend's data.
+    {}
+  postgres-data:
+  # The database's data.
+    {}
