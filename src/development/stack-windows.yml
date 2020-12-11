@@ -80,7 +80,7 @@ services:
       placement:
         constraints:
         - node.role == manager
-    image: traefik:2.3.4
+    image: traefik:2.3.5
     ports:
     - mode: host
       protocol: tcp
