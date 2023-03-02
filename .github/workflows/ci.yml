@@ -6,16 +6,8 @@ on:
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
-    - name: dargstack derive
-      run: |
-        mkdir ~/scripts/
-        wget "https://raw.githubusercontent.com/dargmuesli/dargstack/master/src/dargstack" -O ~/scripts/dargstack
-        chmod +x ~/scripts/dargstack
-        ~/scripts/dargstack derive
+    name: DargStack rgen
+    uses: dargmuesli/github-actions/.github/workflows/dargstack-rgen.yml@0.31.0
   release-semantic:
     needs: build
     name: Semantic Release
