@@ -18,7 +18,7 @@ This project is deployed in accordance to the [DargStack template](https://githu
 
  - ### `adminer`
     
-    You can access the database's frontend at [adminer.drinks-touch.test](https://adminer.drinks-touch.test/).
+    You can access the database's frontend at [adminer.localhost](https://adminer.localhost/).
     This information is required for login:
     
     |          |                     |
@@ -33,7 +33,7 @@ This project is deployed in accordance to the [DargStack template](https://githu
     
  - ### `drinks-touch`
     
-    You can access the main project at [drinks-touch.test](http://drinks-touch.test/).
+    You can access the main project at [localhost](http://localhost/).
     
  - ### `ldap`
     
@@ -41,7 +41,7 @@ This project is deployed in accordance to the [DargStack template](https://githu
     
  - ### `phpldapadmin`
     
-    You can access the ldap frontend at [phpldapadmin.drinks-touch.test](http://phpldapadmin.drinks-touch.test/).
+    You can access the ldap frontend at [phpldapadmin.localhost](http://phpldapadmin.localhost/).
     This information is required for login:
     
     |          |                            |
@@ -59,7 +59,7 @@ This project is deployed in accordance to the [DargStack template](https://githu
     
  - ### `traefik`
     
-    You can access the reverse proxy's dashboard at [traefik.drinks-touch.test](https://traefik.drinks-touch.test/).
+    You can access the reverse proxy's dashboard at [traefik.localhost](https://traefik.localhost/).
     Traefik enables HTTPS for all services and acts as a load-balancer too.
     
  - ### `traefik_certs-dumper` ![production](https://img.shields.io/badge/-production-informational.svg?style=flat-square)
