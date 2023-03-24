@@ -1,7 +1,7 @@
 {
   "name": "drinks-touch_stack",
   "private": true,
-  "version": "0.5.6",
+  "version": "0.5.7",
   "scheduleVersion": "0.5.7",
   "description": "DargStack configuration for drinks-touch.",
   "repository": "https://github.com/flipdot/drinks-touch_stack.git",
