@@ -64,7 +64,7 @@ This project is deployed in accordance to the [DargStack template](https://githu
     
  - ### `traefik_certs-dumper` ![production](https://img.shields.io/badge/-production-informational.svg?style=flat-square)
     
-    See [DargStack template: certificates](https://github.com/dargmuesli/dargstack_template/#certificates).
+    You cannot access the reverse proxy's certificate helper directly.
     
 
 ## volumes
