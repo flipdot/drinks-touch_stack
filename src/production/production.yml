@@ -38,7 +38,7 @@ services:
       - traefik.http.routers.traefik_secure.middlewares=auth
       - traefik.http.routers.traefik_secure.tls.certresolver=default
   traefik_certs-dumper:
-  # See [DargStack template: certificates](https://github.com/dargmuesli/dargstack_template/#certificates).
+  # You cannot access the reverse proxy's certificate helper directly.
     command:
     - file
     - --clean=false

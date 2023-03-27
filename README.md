@@ -3,7 +3,7 @@
 
 The Docker stack configuration for [drinks-touch.fd](https://drinks-touch.fd/).
 
-This project is deployed in accordance to the [DargStack template](https://github.com/dargmuesli/dargstack_template/) to make deployment a breeze. It is closely related to [drinks-touch's source code](https://github.com/flipdot/drinks-touch/).
+This project is deployed in accordance to the [DargStack template](https://github.com/dargstack/dargstack_template/) to make deployment a breeze. It is closely related to [drinks-touch's source code](https://github.com/flipdot/drinks-touch/).
 
 ## Table of Contents
 
@@ -64,7 +64,7 @@ This project is deployed in accordance to the [DargStack template](https://githu
     
  - ### `traefik_certs-dumper` ![production](https://img.shields.io/badge/-production-informational.svg?style=flat-square)
     
-    See [DargStack template: certificates](https://github.com/dargmuesli/dargstack_template/#certificates).
+    You cannot access the reverse proxy's certificate helper directly.
     
 
 ## volumes
