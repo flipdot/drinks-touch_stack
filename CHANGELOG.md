@@ -1,3 +1,10 @@
+# [0.6.0](https://github.com/flipdot/drinks-touch_stack/compare/0.5.9...0.6.0) (2023-04-25)
+
+
+### Features
+
+* **production:** use github container registry ([435a730](https://github.com/flipdot/drinks-touch_stack/commit/435a730decbcff7d9aadddce839855f0c3e30725))
+
 ## [0.5.9](https://github.com/flipdot/drinks-touch_stack/compare/0.5.8...0.5.9) (2023-04-14)
 
 
