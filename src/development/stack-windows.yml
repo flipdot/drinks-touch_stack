@@ -8,7 +8,7 @@ services:
       - traefik.http.routers.adminer_secure.rule=Host(`adminer.${STACK_DOMAIN}`, `adminer.${STACK_DOMAIN_LOCAL}`)
       - traefik.http.routers.adminer_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
       - traefik.http.services.adminer.loadbalancer.server.port=8080
-    image: adminer:4
+    image: adminer:4@sha256:d1dd4da85ada2da92b051c7dead671a7671e15789e17551773c703fd69e3c27d
   drinks-touch:
     deploy:
       labels:
@@ -43,14 +43,14 @@ services:
       - traefik.http.services.phpldapadmin.loadbalancer.server.port=80
     environment:
       PHPLDAPADMIN_HTTPS: "false"
-    image: osixia/phpldapadmin:0.9.0
+    image: osixia/phpldapadmin:0.9.0@sha256:d112b82be1336f91e028b0348755133fda333992355b533419355a65c32ff9ad
     volumes:
     - phpldapadmin-data:/var/www/phpldapadmin
   postgres:
     environment:
       POSTGRES_DB: drinks
       POSTGRES_PASSWORD: postgres
-    image: postgres:15.3-alpine
+    image: postgres:15.3-alpine@sha256:bb2769783686897b370c061b4ad1aac5a819bccec7945d03c3b45a9b077bcea0
     volumes:
     - postgres-data:/var/lib/postgresql/data
     - ../production/data/postgres/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
@@ -80,7 +80,7 @@ services:
       placement:
         constraints:
         - node.role == manager
-    image: traefik:v2.10.1
+    image: traefik:v2.10.1@sha256:7347d4d189642064337fe4eb615d14de2d44f287cb7e1189752fb7399a5ad843
     ports:
     - mode: host
       protocol: tcp

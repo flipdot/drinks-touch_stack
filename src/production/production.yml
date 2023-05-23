@@ -11,7 +11,7 @@ services:
       - traefik.http.routers.drinks-touch_secure.tls.certresolver=default
     environment:
       ENV: PI
-    image: ghcr.io/flipdot/drinks-touch:0.4.11
+    image: ghcr.io/flipdot/drinks-touch:0.4.11@sha256:614224bf94d60f97d4f8aa3b06f3716d73b2becc01b54e416140fdafd2b8cd05
     volumes:
     - (( replace ))
     - ./secrets/drinks-touch/config.py:/app/config.py:ro
@@ -22,7 +22,7 @@ services:
   # Service script that resets the eGalax touchscreen offset.
     environment:
       DISPLAY: unix${DISPLAY}
-    image: flipdot/reset-touch:0.0.1
+    image: flipdot/reset-touch:0.0.1@sha256:19d0907d69b2f4662fcda5a15338209d97bb40baf7823c9e8268281e1258c19b
     volumes:
     - /tmp/.X11-unix:/tmp/.X11-unix
   traefik:
@@ -50,7 +50,7 @@ services:
     - --watch
     environment:
       STACK_DOMAIN: ${STACK_DOMAIN}
-    image: ldez/traefik-certs-dumper:v2.8.1
+    image: ldez/traefik-certs-dumper:v2.8.1@sha256:2734462fc8290feab0e34a00d5f3e4992ba74f8e3712d74efff7ae703d0e7e87
     volumes:
     - acme_data:/etc/traefik/acme/
 version: "3.7"
