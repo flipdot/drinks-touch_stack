@@ -78,7 +78,7 @@ services:
     environment:
       POSTGRES_DB: drinks
       POSTGRES_PASSWORD: postgres
-    image: postgres:15.3-alpine@sha256:8b3baafb208cefc63c27d2486f71c46e028bdf8212716e6ccc66ff35ba90fb9b
+    image: postgres:15.3-alpine@sha256:4d6808bfa01b4c2fceb0ff249e833521f3341eac7d2e5da85c022b34fa04c004
     volumes:
     - postgres-data:/var/lib/postgresql/data
     - ../production/data/postgres/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
