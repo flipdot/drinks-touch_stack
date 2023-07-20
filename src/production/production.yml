@@ -11,7 +11,7 @@ services:
       - traefik.http.routers.drinks-touch_secure.tls.certresolver=default
     environment:
       ENV: PI
-    image: ghcr.io/flipdot/drinks-touch:0.4.15@sha256:20c8aee29978fe2a117bc13d446eae9794bdd53df37d9e71091f369edfe02740
+    image: ghcr.io/flipdot/drinks-touch:0.4.16@sha256:0cbbe3fa16e692537dac504ef0c45625f17231783bbb47480b6a8f1094348075
     volumes:
     - (( replace ))
     - ./secrets/drinks-touch/config.py:/app/config.py:ro
