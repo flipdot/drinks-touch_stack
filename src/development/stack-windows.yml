@@ -8,7 +8,7 @@ services:
       - traefik.http.routers.adminer_secure.rule=Host(`adminer.${STACK_DOMAIN}`, `adminer.${STACK_DOMAIN_LOCAL}`)
       - traefik.http.routers.adminer_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
       - traefik.http.services.adminer.loadbalancer.server.port=8080
-    image: adminer:4@sha256:b5037c04233fdf203c0d5050e4124360e01ac8a5248916b8f9e31d62044caf77
+    image: adminer:4@sha256:049c27350c7a09912d5a5aeff371ebb5621e021874e38984efaecc90a1ef0315
   drinks-touch:
     deploy:
       labels:
