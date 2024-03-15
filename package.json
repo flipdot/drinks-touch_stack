@@ -1,7 +1,7 @@
 {
   "name": "drinks-touch_stack",
   "private": true,
-  "version": "0.6.28",
+  "version": "0.6.29",
   "description": "DargStack configuration for drinks-touch.",
   "repository": "https://github.com/flipdot/drinks-touch_stack.git",
   "author": "Jonas Thelemann <e-mail+flipdot/drinks-touch_stack@jonas-thelemann.de>",
