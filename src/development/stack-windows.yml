@@ -4,8 +4,8 @@ services:
       labels:
       - traefik.enable=true
       - traefik.http.routers.adminer.middlewares=redirectscheme
-      - traefik.http.routers.adminer.rule=Host(`adminer.${STACK_DOMAIN}`, `adminer.${STACK_DOMAIN_LOCAL}`)
-      - traefik.http.routers.adminer_secure.rule=Host(`adminer.${STACK_DOMAIN}`, `adminer.${STACK_DOMAIN_LOCAL}`)
+      - traefik.http.routers.adminer.rule=Host(`adminer.${STACK_DOMAIN}`) || Host(`adminer.${STACK_DOMAIN_LOCAL}`)
+      - traefik.http.routers.adminer_secure.rule=Host(`adminer.${STACK_DOMAIN}`) || Host(`adminer.${STACK_DOMAIN_LOCAL}`)
       - traefik.http.routers.adminer_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
       - traefik.http.services.adminer.loadbalancer.server.port=8080
     image: adminer:4@sha256:4d06c61fbc5f21e83e3aebf15912736e4730a814b03adc1063dd1fc9cd22e58d
@@ -14,8 +14,8 @@ services:
       labels:
       - traefik.enable=true
       - traefik.http.routers.drinks-touch.middlewares=redirectscheme
-      - traefik.http.routers.drinks-touch.rule=Host(`${STACK_DOMAIN}`, `${STACK_DOMAIN_LOCAL}`, `www.${STACK_DOMAIN}`, `www.${STACK_DOMAIN_LOCAL}`)
-      - traefik.http.routers.drinks-touch_secure.rule=Host(`${STACK_DOMAIN}`, `${STACK_DOMAIN_LOCAL}`, `www.${STACK_DOMAIN}`, `www.${STACK_DOMAIN_LOCAL}`)
+      - traefik.http.routers.drinks-touch.rule=Host(`${STACK_DOMAIN}`) || Host(`${STACK_DOMAIN_LOCAL}`) || Host(`www.${STACK_DOMAIN}`) || Host(`www.${STACK_DOMAIN_LOCAL}`)
+      - traefik.http.routers.drinks-touch_secure.rule=Host(`${STACK_DOMAIN}`) || Host(`${STACK_DOMAIN_LOCAL}`) || Host(`www.${STACK_DOMAIN}`) || Host(`www.${STACK_DOMAIN_LOCAL}`)
       - traefik.http.routers.drinks-touch_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
       - traefik.http.services.drinks-touch.loadbalancer.server.port=80
     environment:
@@ -37,8 +37,8 @@ services:
       labels:
       - traefik.enable=true
       - traefik.http.routers.phpldapadmin.middlewares=redirectscheme
-      - traefik.http.routers.phpldapadmin.rule=Host(`phpldapadmin.${STACK_DOMAIN}`, `phpldapadmin.${STACK_DOMAIN_LOCAL}`)
-      - traefik.http.routers.phpldapadmin_secure.rule=Host(`phpldapadmin.${STACK_DOMAIN}`, `phpldapadmin.${STACK_DOMAIN_LOCAL}`)
+      - traefik.http.routers.phpldapadmin.rule=Host(`phpldapadmin.${STACK_DOMAIN}`) || Host(`phpldapadmin.${STACK_DOMAIN_LOCAL}`)
+      - traefik.http.routers.phpldapadmin_secure.rule=Host(`phpldapadmin.${STACK_DOMAIN}`) || Host(`phpldapadmin.${STACK_DOMAIN_LOCAL}`)
       - traefik.http.routers.phpldapadmin_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
       - traefik.http.services.phpldapadmin.loadbalancer.server.port=80
     environment:
@@ -60,10 +60,9 @@ services:
     - --api=true
     - --entryPoints.web.address=:80
     - --entryPoints.web-secure.address=:443
-    - --providers.docker=true
-    - --providers.docker.endpoint=unix:///var/run/docker.sock
-    - --providers.docker.exposedByDefault=false
-    - --providers.docker.swarmMode=true
+    - --providers.swarm=true
+    - --providers.swarm.endpoint=unix:///var/run/docker.sock
+    - --providers.swarm.exposedByDefault=false
     - --providers.file.filename=/dynamic.yml #DARGSTACK-REMOVE
     - --providers.file.watch=true #DARGSTACK-REMOVE
     deploy:
