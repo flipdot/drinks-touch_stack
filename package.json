@@ -19,6 +19,6 @@
     "@commitlint/config-conventional": "19.2.2",
     "dargstack": "2.2.1",
     "dargstack_rgen": "0.9.41",
-    "husky": "9.1.4"
+    "husky": "9.1.5"
   }
 }
