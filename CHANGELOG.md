@@ -1,3 +1,10 @@
+# [0.7.0](https://github.com/flipdot/drinks-touch_stack/compare/0.6.76...0.7.0) (2025-11-14)
+
+
+### Features
+
+* **deps:** update postgres docker tag to v18 ([88f893b](https://github.com/flipdot/drinks-touch_stack/commit/88f893b71d8b2fd3f831193f183c56d6c4d3095d))
+
 ## [0.6.76](https://github.com/flipdot/drinks-touch_stack/compare/0.6.75...0.6.76) (2025-08-29)
 
 
