@@ -25,7 +25,7 @@ services:
       - traefik.http.routers.adminer_secure.rule=Host(`adminer.${STACK_DOMAIN}`) || Host(`adminer.${STACK_DOMAIN_LOCAL}`)
       - traefik.http.routers.adminer_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
       - traefik.http.services.adminer.loadbalancer.server.port=8080
-    image: adminer:5@sha256:6de28d31ace560fc6b82a691a806452e8ab1cf85969049a493497deb9087b570
+    image: adminer:5@sha256:41898b976011fd87f2d3037366ad97f7d89fddfebc8aa8b3a7d77d0c465aa37b
   drinks-touch:
   # You can access the main project at [localhost](http://localhost/).
     deploy:
