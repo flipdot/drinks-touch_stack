@@ -1,24 +1,23 @@
 {
-  "name": "drinks-touch_stack",
-  "private": true,
-  "version": "0.7.0",
-  "description": "DargStack configuration for drinks-touch.",
-  "repository": "https://github.com/flipdot/drinks-touch_stack.git",
   "author": "Jonas Thelemann <e-mail+flipdot/drinks-touch_stack@jonas-thelemann.de>",
-  "license": "GPL-3.0-only",
-  "type": "module",
+  "description": "DargStack configuration for drinks-touch.",
+  "devDependencies": {
+    "dargstack": "2.5.1",
+    "dargstack_rgen": "0.9.90"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.0.8"
+    }
+  },
   "engines": {
     "node": "24"
   },
-  "packageManager": "pnpm@11.0.8",
-  "scripts": {
-    "prepare": "husky"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "20.5.3",
-    "@commitlint/config-conventional": "20.5.3",
-    "dargstack": "2.5.1",
-    "dargstack_rgen": "0.9.90",
-    "husky": "9.1.7"
-  }
+  "license": "GPL-3.0-only",
+  "name": "drinks-touch_stack",
+  "private": true,
+  "repository": "https://github.com/flipdot/drinks-touch_stack.git",
+  "type": "module",
+  "version": "0.7.0"
 }
